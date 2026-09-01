@@ -1,16 +1,17 @@
 {
   "status": "PASS",
   "validator": "preflight",
-  "ts": "2026-09-01T06:44:12.459861Z",
-  "skill": "mega-sdd:generate-units",
+  "ts": "2026-09-01T07:39:15.786846Z",
+  "skill": "mega-sdd:bind-codebase",
   "fatal_check_id": null,
   "fatal_on_fail": null,
   "warnings": [],
   "checks": [
     {
-      "check": "units_input_complete",
-      "status": "PASS"
+      "check": "binding_input_complete",
+      "status": "PASS",
+      "lane": "express"
     }
   ],
-  "summary": "preflight clean for mega-sdd:generate-units"
+  "summary": "preflight clean for mega-sdd:bind-codebase"
 }

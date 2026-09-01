@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "generated_at": "2026-09-01T07:34:31.458323Z",
+  "generator": "derive-state.sh",
+  "root": "/home/ikbalgazalba/AI/Project/zhl/zhenghe-monorepo",
+  "probes": {
+    "prd": {
+      "present": false,
+      "candidates": [],
+      "newest": null,
+      "newest_mtime": null
+    },
+    "vaults": [
+      {
+        "name": "carrier-booking-gateway",
+        "path": ".mega-sdd/vaults/carrier-booking-gateway",
+        "layout": "canonical",
+        "has_vault_json": true,
+        "vault_doc_count": 4,
+        "mode": null,
+        "bound_present": false,
+        "binding": {
+          "binding_md": false,
+          "binding_json": false,
+          "head": null,
+          "conflicts_active": 0,
+          "conflicts_resolved": 0,
+          "resolution_actions": {}
+        },
+        "units_count": 29,
+        "bolts_count": 0,
+        "last_bolt_mtime": null,
+        "oq": {
+          "pending_p0_p1": 3,
+          "deferred_p0_p1": 0
+        },
+        "squad_count": 0,
+        "interfaces_count": 0,
+        "drift_report": {
+          "present": false,
+          "mtime": null
+        },
+        "pending_sync_open": 0,
+        "mtime": "2026-09-01T07:03:51.493970Z"
+      }
+    ],
+    "git": {
+      "is_repo": true,
+      "head": "a734c05ccef8c4383631ae153ab29e62bc7c4343"
+    },
+    "manifests": [],
+    "code": {
+      "has_code_files": false,
+      "scan_capped": false
+    },
+    "codebase_map": {
+      "present": false,
+      "path": null,
+      "last_scanned_commit": null,
+      "matches_head": "n/a"
+    },
+    "symbol_index": {
+      "present": false,
+      "head_commit": null,
+      "matches_head": "n/a"
+    },
+    "framework_pack": {
+      "pack": "_universal",
+      "manifest": null,
+      "candidates": []
+    },
+    "knowledge_base": {
+      "present": false,
+      "path": null
+    },
+    "dirty_journal_rows": 0,
+    "profile": "full",
+    "spine": "express",
+    "astgrep_available": true,
+    "foreign_sdd": [],
+    "preflight_predicates": {
+      "has_vault": true,
+      "has_bound_or_vault": true,
+      "has_units": true,
+      "has_codebase_map": false
+    }
+  },
+  "derived": {
+    "vault": "carrier-booking-gateway",
+    "profile": "full",
+    "spine": "express",
+    "framework_pack": "_universal",
+    "framework_pack_manifest": null,
+    "vault_path": ".mega-sdd/vaults/carrier-booking-gateway",
+    "position": "oq_gate",
+    "proposed_next": [
+      "resolve-oq"
+    ],
+    "mode_inferred": "brownfield",
+    "starterkit": "absent",
+    "change_signal": {
+      "dirty_journal_rows": 0,
+      "map_stamp_matches_head": "n/a",
+      "index_stamp_matches_head": "n/a"
+    },
+    "drift_recent": false,
+    "manifest_derive_needed": false,
+    "foreign_sdd": [],
+    "notes": []
+  }
+}

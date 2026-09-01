@@ -1,7 +1,7 @@
 {
   "vault_version": "1.0",
   "vault_layout": 2,
-  "generated_at": "2026-09-01T07:03:51.494619Z",
+  "generated_at": "2026-09-01T07:43:58.953439Z",
   "title": "Carrier Booking Gateway",
   "project_shape": "web-app",
   "implementation_mode": "new",
@@ -404,6 +404,12 @@
       "event": "units_generated",
       "at": "2026-09-01T07:05:00Z",
       "count": 29
+    },
+    {
+      "event": "bind",
+      "at": "2026-09-01T07:45:00Z",
+      "binding": "binding.md",
+      "summary": "53 claims, 53 confirmed, 0 conflict, 0 oq (express, --sync fallback re-bind, no code exists yet)"
     }
   ]
 }

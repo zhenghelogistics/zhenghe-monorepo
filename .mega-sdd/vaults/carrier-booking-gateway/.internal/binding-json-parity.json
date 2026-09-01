@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "validator": "validate-binding-json.sh",
+  "vault": ".mega-sdd/vaults/carrier-booking-gateway",
+  "errors": []
+}

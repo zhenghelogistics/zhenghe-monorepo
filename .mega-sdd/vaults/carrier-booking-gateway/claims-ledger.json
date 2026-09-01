@@ -1,0 +1,693 @@
+{
+  "schema": 1,
+  "generated_by": "derive-claims-ledger@1.0.0",
+  "generated_at": "2026-09-01T07:39:37.512566Z",
+  "vault": "carrier-booking-gateway",
+  "doc_shas": {
+    "vault.md": "700318b9e02c7c1d7260940c4f0fa02ae008bd9e1277a14bbe67367d5669339f",
+    "model.md": "45981f65fbd44a85be367d1b9372076d07e7074779c59a5d507f6122885e1cc8",
+    "flows.md": "c63ccbbbbd193d723191412cbdb1f20d58e1e73d619b3142f7704be2ac076053",
+    "constraints.md": "cd59248dc596caa4aaccdfeb26fb9fc06eea17ff3901e94b36e9fe7231b0b768"
+  },
+  "claims": [
+    {
+      "id": "C-MODE-01",
+      "type": "mode",
+      "text": "implementation_mode: new",
+      "source": "vault.md:7",
+      "hints": {
+        "terms": [
+          "new"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-01",
+      "type": "decision",
+      "text": "Standalone monorepo, not a module inside Motus",
+      "source": "vault.md:160",
+      "native_id": "D-001",
+      "hints": {
+        "terms": [
+          "standalone",
+          "monorepo",
+          "module",
+          "inside",
+          "motus"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-02",
+      "type": "decision",
+      "text": "Modular-monolith gateway (Approach 1)",
+      "source": "vault.md:164",
+      "native_id": "D-002",
+      "hints": {
+        "terms": [
+          "modular",
+          "monolith",
+          "gateway",
+          "approach"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-03",
+      "type": "decision",
+      "text": "Canonical booking model based on DCSA Booking 2.0",
+      "source": "vault.md:168",
+      "native_id": "D-003",
+      "hints": {
+        "terms": [
+          "canonical",
+          "booking",
+          "model",
+          "based",
+          "dcsa"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-04",
+      "type": "decision",
+      "text": "Transport-agnostic CarrierAdapter interface",
+      "source": "vault.md:172",
+      "native_id": "D-004",
+      "hints": {
+        "terms": [
+          "transport",
+          "agnostic",
+          "carrieradapter",
+          "interface"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-05",
+      "type": "decision",
+      "text": "ZHL Postgres is source of truth; carrier is system-of-record for confirmation",
+      "source": "vault.md:176",
+      "native_id": "D-005",
+      "hints": {
+        "terms": [
+          "postgres",
+          "source",
+          "truth",
+          "carrier",
+          "system",
+          "record"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-06",
+      "type": "decision",
+      "text": "Polling for status updates in v1; webhook seam retained",
+      "source": "vault.md:180",
+      "native_id": "D-006",
+      "hints": {
+        "terms": [
+          "polling",
+          "status",
+          "updates",
+          "webhook",
+          "seam",
+          "retained"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-07",
+      "type": "decision",
+      "text": "Encrypted Postgres credential store, master key from env",
+      "source": "vault.md:184",
+      "native_id": "D-007",
+      "hints": {
+        "terms": [
+          "encrypted",
+          "postgres",
+          "credential",
+          "store",
+          "master",
+          "from"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-08",
+      "type": "decision",
+      "text": "Postgres-backed job queue (graphile-worker)",
+      "source": "vault.md:188",
+      "native_id": "D-008",
+      "hints": {
+        "terms": [
+          "postgres",
+          "backed",
+          "queue",
+          "graphile",
+          "worker"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-09",
+      "type": "decision",
+      "text": "Single status-reconcile choke point",
+      "source": "vault.md:192",
+      "native_id": "D-009",
+      "hints": {
+        "terms": [
+          "single",
+          "status",
+          "reconcile",
+          "choke",
+          "point"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-10",
+      "type": "decision",
+      "text": "Build against per-carrier mock servers until sandbox credentials arrive",
+      "source": "vault.md:196",
+      "native_id": "D-010",
+      "hints": {
+        "terms": [
+          "build",
+          "against",
+          "carrier",
+          "mock",
+          "servers",
+          "until"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-11",
+      "type": "decision",
+      "text": "v1 scope is create + status + cancel + tracking",
+      "source": "vault.md:200",
+      "native_id": "D-011",
+      "hints": {
+        "terms": [
+          "scope",
+          "create",
+          "status",
+          "cancel",
+          "tracking"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-12",
+      "type": "decision",
+      "text": "One active ZHL account per carrier; schema account-ready",
+      "source": "vault.md:204",
+      "native_id": "D-012",
+      "hints": {
+        "terms": [
+          "active",
+          "account",
+          "carrier",
+          "schema",
+          "ready"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-13",
+      "type": "decision",
+      "text": "TypeScript + React 19 + Fastify + pnpm workspaces, no ORM",
+      "source": "vault.md:208",
+      "native_id": "D-013",
+      "hints": {
+        "terms": [
+          "typescript",
+          "react",
+          "fastify",
+          "pnpm",
+          "workspaces"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-14",
+      "type": "decision",
+      "text": "`packages/edifact` is a seam plus skeleton in v1",
+      "source": "vault.md:212",
+      "native_id": "D-014",
+      "hints": {
+        "terms": [
+          "packages",
+          "edifact",
+          "seam",
+          "plus",
+          "skeleton"
+        ]
+      }
+    },
+    {
+      "id": "C-DC-15",
+      "type": "decision",
+      "text": "Static egress IP for Evergreen IP allowlist",
+      "source": "vault.md:216",
+      "native_id": "D-015",
+      "hints": {
+        "terms": [
+          "static",
+          "egress",
+          "evergreen",
+          "allowlist"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-01",
+      "type": "entity",
+      "text": "registry of supported carriers and their capabilities; the gateway will not route to a disabled carrier",
+      "source": "model.md:18",
+      "entity": "carriers",
+      "fields": [
+        "code",
+        "display_name",
+        "transport_mode",
+        "dcsa_booking_version",
+        "enabled",
+        "created_at",
+        "updated_at"
+      ],
+      "hints": {
+        "symbols": [
+          "carriers",
+          "Carriers"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-02",
+      "type": "entity",
+      "text": "encrypted per-carrier credentials; one active row per carrier in v1, account_ref present for future multi-account",
+      "source": "model.md:30",
+      "entity": "carrier_credentials",
+      "fields": [
+        "id",
+        "carrier_code",
+        "account_ref",
+        "auth_type",
+        "secret_encrypted",
+        "key_version",
+        "base_url",
+        "is_active",
+        "rotated_at",
+        "updated_by",
+        "created_at",
+        "updated_at"
+      ],
+      "hints": {
+        "symbols": [
+          "carrier_credentials",
+          "CarrierCredentials",
+          "carrierCredentials"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-03",
+      "type": "entity",
+      "text": "canonical booking record; ZHL source of truth for internal state, carrier is system-of-record for confirmation",
+      "source": "model.md:50",
+      "entity": "bookings",
+      "fields": [
+        "id",
+        "carrier_code",
+        "carrier_account_ref",
+        "status",
+        "carrier_booking_ref",
+        "canonical_request",
+        "pol",
+        "pod",
+        "vessel_name",
+        "voyage_number",
+        "requested_departure_date",
+        "customer_reference",
+        "carrier_status_raw",
+        "idempotency_key",
+        "created_by",
+        "last_carrier_sync_at",
+        "created_at",
+        "updated_at"
+      ],
+      "hints": {
+        "symbols": [
+          "bookings",
+          "Bookings"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-04",
+      "type": "entity",
+      "text": "append-only audit timeline for a booking; every status change and error is one row",
+      "source": "model.md:79",
+      "entity": "booking_events",
+      "fields": [
+        "id",
+        "booking_id",
+        "seq",
+        "event_type",
+        "from_status",
+        "to_status",
+        "source",
+        "actor",
+        "detail",
+        "created_at"
+      ],
+      "hints": {
+        "symbols": [
+          "booking_events",
+          "BookingEvents",
+          "bookingEvents"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-05",
+      "type": "entity",
+      "text": "normalized tracking events (shipment / transport / equipment), upserted by dedupe_key",
+      "source": "model.md:97",
+      "entity": "shipment_events",
+      "fields": [
+        "id",
+        "booking_id",
+        "carrier_code",
+        "dedupe_key",
+        "event_type",
+        "classifier",
+        "event_code",
+        "description",
+        "event_date_time",
+        "location_unloc",
+        "facility",
+        "equipment_reference",
+        "transport_vessel",
+        "transport_voyage",
+        "transport_port",
+        "raw",
+        "retrieved_at",
+        "created_at"
+      ],
+      "hints": {
+        "symbols": [
+          "shipment_events",
+          "ShipmentEvents",
+          "shipmentEvents"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-06",
+      "type": "entity",
+      "text": "raw request/response log for every carrier exchange; audit + debugging when sandboxes go live",
+      "source": "model.md:124",
+      "entity": "carrier_messages",
+      "fields": [
+        "id",
+        "booking_id",
+        "carrier_code",
+        "direction",
+        "operation",
+        "http_status",
+        "request_body",
+        "response_body",
+        "latency_ms",
+        "error_text",
+        "correlation_id",
+        "created_at"
+      ],
+      "hints": {
+        "symbols": [
+          "carrier_messages",
+          "CarrierMessages",
+          "carrierMessages"
+        ]
+      }
+    },
+    {
+      "id": "C-DM-07",
+      "type": "entity",
+      "text": "audit of credential set/rotate/disable actions",
+      "source": "model.md:145",
+      "entity": "credential_events",
+      "fields": [
+        "id",
+        "carrier_code",
+        "action",
+        "actor",
+        "created_at"
+      ],
+      "hints": {
+        "symbols": [
+          "credential_events",
+          "CredentialEvents",
+          "credentialEvents"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-01",
+      "type": "flow",
+      "text": "Create a booking",
+      "source": "flows.md:17",
+      "native_id": "F-U-001",
+      "hints": {
+        "terms": [
+          "create",
+          "booking"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-02",
+      "type": "flow",
+      "text": "Cancel a booking",
+      "source": "flows.md:48",
+      "native_id": "F-U-002",
+      "hints": {
+        "terms": [
+          "cancel",
+          "booking"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-03",
+      "type": "flow",
+      "text": "Set or rotate a carrier credential",
+      "source": "flows.md:72",
+      "native_id": "F-U-003",
+      "hints": {
+        "terms": [
+          "rotate",
+          "carrier",
+          "credential"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-04",
+      "type": "flow",
+      "text": "submit_booking worker job",
+      "source": "flows.md:99",
+      "native_id": "F-S-001",
+      "hints": {
+        "terms": [
+          "submit_booking",
+          "worker"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-05",
+      "type": "flow",
+      "text": "poll_booking_status (cron + worker)",
+      "source": "flows.md:132",
+      "native_id": "F-S-002",
+      "hints": {
+        "terms": [
+          "poll_booking_status",
+          "cron",
+          "worker"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-06",
+      "type": "flow",
+      "text": "poll_tracking (cron + worker)",
+      "source": "flows.md:160",
+      "native_id": "F-S-003",
+      "hints": {
+        "terms": [
+          "poll_tracking",
+          "cron",
+          "worker"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-07",
+      "type": "flow",
+      "text": "submit_cancellation worker job",
+      "source": "flows.md:186",
+      "native_id": "F-S-004",
+      "hints": {
+        "terms": [
+          "submit_cancellation",
+          "worker"
+        ]
+      }
+    },
+    {
+      "id": "C-FL-08",
+      "type": "flow",
+      "text": "End-to-end booking lifecycle",
+      "source": "flows.md:208",
+      "native_id": "F-C-001",
+      "hints": {
+        "terms": [
+          "booking",
+          "lifecycle"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-01",
+      "type": "constraint",
+      "text": "Email/job processing is idempotent — `submit_booking` and `submit_cancellation` act only if the booking is still in the expected status; `poll_tracking` upserts by `dedupe_key`; any job is safe to re-run",
+      "source": "constraints.md:36",
+      "hints": {
+        "terms": [
+          "email",
+          "processing",
+          "idempotent",
+          "submit_booking",
+          "submit_cancellation",
+          "only"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-02",
+      "type": "constraint",
+      "text": "No silent failure — a job that exhausts retries writes an `ERROR` `booking_events` row, logs, and increments a metric; the booking is visibly parked in `SUBMISSION_FAILED` / `CANCELLATION_FAILED`",
+      "source": "constraints.md:37",
+      "hints": {
+        "terms": [
+          "silent",
+          "failure",
+          "that",
+          "exhausts",
+          "retries",
+          "writes"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-03",
+      "type": "constraint",
+      "text": "Structured logging (pino): every job and carrier exchange logs `{ correlationId, bookingId, carrierCode, operation, outcome, latencyMs }`; correlation id generated at API ingress and threaded through job payloads",
+      "source": "constraints.md:38",
+      "hints": {
+        "terms": [
+          "structured",
+          "logging",
+          "pino",
+          "every",
+          "carrier",
+          "exchange"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-04",
+      "type": "constraint",
+      "text": "Named log events: `booking.created/submitted/submit_failed/status_changed/cancel_requested/cancelled`, `tracking.events_ingested`, `carrier.auth_failed`, `carrier.circuit_opened`, `credential.rotated`",
+      "source": "constraints.md:39",
+      "hints": {
+        "terms": [
+          "named",
+          "events",
+          "booking",
+          "created",
+          "submitted",
+          "submit_failed"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-05",
+      "type": "constraint",
+      "text": "`GET /health` checks DB, worker heartbeat, per-carrier circuit state and `lastAuthOk`; the system reads its own DB and never calls a carrier during a request render",
+      "source": "constraints.md:40",
+      "hints": {
+        "terms": [
+          "health",
+          "checks",
+          "worker",
+          "heartbeat",
+          "carrier",
+          "circuit"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-06",
+      "type": "constraint",
+      "text": "RBAC roles `admin` / `controller` / `viewer` with server-side permission checks; frontend checks are cosmetic; TLS on all transport; `carrier_messages` request bodies redacted of auth headers and secret fields",
+      "source": "constraints.md:41",
+      "hints": {
+        "terms": [
+          "rbac",
+          "roles",
+          "admin",
+          "controller",
+          "viewer",
+          "with"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-07",
+      "type": "constraint",
+      "text": "Append-only `booking_events` per state change (actor, source, from/to, correlation id); `credential_events` per credential action; raw carrier exchanges in `carrier_messages`",
+      "source": "constraints.md:42",
+      "hints": {
+        "terms": [
+          "append",
+          "only",
+          "booking_events",
+          "state",
+          "change",
+          "actor"
+        ]
+      }
+    },
+    {
+      "id": "C-CN-08",
+      "type": "constraint",
+      "text": "CI runs unit + contract + domain + API tests on every PR with an ephemeral Postgres; each adapter passes `ContractTestKit` against its mock",
+      "source": "constraints.md:43",
+      "hints": {
+        "terms": [
+          "runs",
+          "unit",
+          "contract",
+          "domain",
+          "tests",
+          "every"
+        ]
+      }
+    }
+  ]
+}
