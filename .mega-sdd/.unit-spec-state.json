@@ -1,0 +1,369 @@
+{
+  "ts": "2026-09-01T07:04:03.933426Z",
+  "mode": "single",
+  "checked_file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-013.md",
+  "checked_files": [
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-001.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-002.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-003.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-004.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-005.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-006.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-007.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-008.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-009.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-010.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-011.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-012.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-013.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-014.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-015.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-016.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-017.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-018.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-019.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-020.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-021.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-022.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-023.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-024.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-025.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-026.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-027.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-028.md",
+    ".mega-sdd/vaults/carrier-booking-gateway/units/U-029.md"
+  ],
+  "status": "FAIL",
+  "issues_count": 28,
+  "hard_rules_machine_checkable": 20,
+  "hard_rules_directive_prose": 82,
+  "hard_rules_directive_advisory": "82 of 102 Hard rules (80%) are prose directives \u2014 B1 verifies none of them; express rules as v1 productions (DO NOT modify <path>, DO NOT add new <manifest> dependencies, <glob> MUST follow <case>, function <name> MUST preserve signature, file <path> MUST exist after bolt) or v2 ast-grep so they can FAIL",
+  "issues": [
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-001 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-001",
+      "untraced_rules": [
+        "- file:packages/config/*.js MUST follow kebab-case naming",
+        "- NEVER add a runtime dependency in this unit; only the shared dev toolchain (typescript, eslint, prettier, vitest) is i",
+        "- NEVER add a JavaScript source file to any package or app (constitution A-001)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-001.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-002 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-002",
+      "untraced_rules": [
+        "- NEVER read process.env outside apps/booking/src/config/env.ts",
+        "- ALWAYS validate route input with a zod schema at the boundary (constitution A-003)",
+        "- DO NOT use serverless handlers; use Fastify routes (constitution A-004)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-002.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-003 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-003",
+      "untraced_rules": [
+        "- DO NOT add an ORM or query-builder dependency (constitution A-002)",
+        "- NEVER read the connection string from process.env in packages/db; take it as an injected argument",
+        "- file:packages/db/src/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-003.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-004 has 4 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-004",
+      "untraced_rules": [
+        "- DO NOT add an ORM or query-builder dependency (constitution A-002)",
+        "- file apps/booking/src/db/migrations/001_core_schema.sql MUST exist after bolt",
+        "- DO NOT define ON DELETE CASCADE that hard-deletes operational rows; use soft delete / archive (constitution F-003)",
+        "- ALWAYS declare timestamp columns as timestamptz (constitution F-004)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-004.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-005 has 2 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-005",
+      "untraced_rules": [
+        "- DO NOT re-declare the canonical booking request schema; import it from packages/carrier-core (constitution A-003)",
+        "- file:packages/carrier-core/src/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-005.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-007 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-007",
+      "untraced_rules": [
+        "- DO NOT import from apps/booking or packages/db in packages/carrier-core/src/http",
+        "- NEVER retry a VALIDATION or AUTH error; retry only failures the caller marks retryable",
+        "- NEVER pass unredacted auth headers or secret fields to the message-log hook (constitution B-003)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-007.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-008 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-008",
+      "untraced_rules": [
+        "- NEVER log a token, client secret, API key, or JWT signing key (constitution B-002)",
+        "- ALWAYS let oauth2ClientCredentials accept an optional map of extra static headers (Maersk Consumer-Key)",
+        "- file:packages/carrier-core/src/auth/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-008.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-009 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-009",
+      "untraced_rules": [
+        "- ALWAYS assert every AdapterResult is ok with schema-valid data or a classified AdapterError",
+        "- NEVER hardcode a carrier-specific field name in the kit; work only through the CarrierAdapter surface",
+        "- file packages/carrier-core/src/testing/contractKit.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-009.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-010 has 4 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-010",
+      "untraced_rules": [
+        "- DO NOT write bespoke crypto; use libsodium crypto_secretbox for the secret blob (constitution B-001)",
+        "- NEVER write a decrypted secret to a log or to carrier_messages (constitution B-002)",
+        "- ALWAYS append a credential_events row with the actor on put / rotate / disable (constitution F-002)",
+        "- NEVER leave more than one active carrier_credentials row per carrier; the partial unique index enforces it"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-010.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-011 has 2 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-011",
+      "untraced_rules": [
+        "- DO NOT UPDATE or DELETE a booking_events row; the table is append-only (constitution F-001)",
+        "- ALWAYS write from_status, to_status, source, actor, and a correlation id on every booking_events row"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-011.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-012 has 1 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-012",
+      "untraced_rules": [
+        "- ALWAYS enqueue onto the same job queue the worker (U-013) consumes"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-012.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-013 has 1 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-013",
+      "untraced_rules": [
+        "- ALWAYS redact carrier_messages request bodies before insert (constitution B-003)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-013.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-014 has 2 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-014",
+      "untraced_rules": [
+        "- ALWAYS assert booking_events seq is contiguous and every status change source is adapter / poller / user",
+        "- file apps/booking/test/fakeAdapter.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-014.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-015 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-015",
+      "untraced_rules": [
+        "- ALWAYS enforce requireRole server-side: 401 when unauthenticated, 403 when the role is insufficient (constitution B-00",
+        "- DO NOT import from apps/booking in packages/auth",
+        "- file:packages/auth/src/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-015.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-016 has 1 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-016",
+      "untraced_rules": [
+        "- ALWAYS return response timestamps as ISO-8601 UTC (constitution F-004)"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-016.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-017 has 4 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-017",
+      "untraced_rules": [
+        "- ALWAYS gate PUT /carriers/:code/credentials with requireRole('admin') (constitution B-004)",
+        "- NEVER return secret material from GET /carriers; only configured / lastAuthOk / circuitState (constitution B-002)",
+        "- ALWAYS validate route input with a zod schema at the boundary (constitution A-003)",
+        "- file apps/booking/src/api/health.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-017.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-018 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-018",
+      "untraced_rules": [
+        "- NEVER make a real network call to a carrier host from the suite",
+        "- ALWAYS assert a `viewer` token is rejected (403) on every mutating route",
+        "- file apps/booking/test/api.integration.test.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-018.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-019 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-019",
+      "untraced_rules": [
+        "- DO NOT import apps/mock-carriers from apps/booking runtime code; test/dev only",
+        "- ALWAYS reject a request missing the expected auth header/token shape with 401 in each carrier namespace",
+        "- DO NOT accept an x-mock-scenario value outside: auth-fail | validation-fail | timeout | rate-limit | carrier-500"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-019.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-020 has 1 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-020",
+      "untraced_rules": [
+        "- file:apps/booking/src/adapters/one/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-020.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-021 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-021",
+      "untraced_rules": [
+        "- ALWAYS send the Consumer-Key header alongside the bearer token on every Maersk request",
+        "- NEVER let a Maersk status string cross the adapter boundary; only toCanonicalStatus output does (spec \u00a75)",
+        "- file:apps/booking/src/adapters/maersk/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-021.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-022 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-022",
+      "untraced_rules": [
+        "- NEVER let an HMM status string cross the adapter boundary; only toCanonicalStatus output does (spec \u00a75)",
+        "- ALWAYS isolate the proprietary-shape mapping in mapRequest.ts / mapStatus.ts so it can be replaced after sandbox acces",
+        "- file:apps/booking/src/adapters/hmm/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-022.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-023 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-023",
+      "untraced_rules": [
+        "- NEVER let an Evergreen status string cross the adapter boundary; only toCanonicalStatus output does (spec \u00a75)",
+        "- ALWAYS isolate the proprietary-shape mapping in mapRequest.ts / mapStatus.ts so it can be replaced after sandbox acces",
+        "- file:apps/booking/src/adapters/evergreen/*.ts MUST follow camelCase naming"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-023.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-024 has 4 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-024",
+      "untraced_rules": [
+        "- ALWAYS key registry adapters by their exact SCAC code (ONEY, MAEU, HDMU, EGLV)",
+        "- NEVER construct the concrete services + registry for the running app outside composition.ts",
+        "- NEVER run the e2e test against a real carrier host; use apps/mock-carriers",
+        "- file apps/booking/src/adapters/index.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-024.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-025 has 2 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-025",
+      "untraced_rules": [
+        "- DO NOT import from apps/booking/src (server code) in apps/booking/web; use HTTP only",
+        "- file:apps/booking/web/src/**/*.tsx MUST follow PascalCase naming for component files"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-025.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-026 has 1 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-026",
+      "untraced_rules": [
+        "- file:apps/booking/web/src/**/*.tsx MUST follow PascalCase naming for component files"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-026.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-027 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-027",
+      "untraced_rules": [
+        "- NEVER show the Carrier messages tab to a non-admin role",
+        "- DO NOT enable Cancel unless the status is in the cancelable set AND the carrier supports cancel",
+        "- file:apps/booking/web/src/**/*.tsx MUST follow PascalCase naming for component files"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-027.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-028 has 3 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-028",
+      "untraced_rules": [
+        "- ALWAYS gate the screen and its route by the `admin` role (constitution B-004)",
+        "- NEVER display a secret value or echo an entered secret back after submit",
+        "- file:apps/booking/web/src/**/*.tsx MUST follow PascalCase naming for component files"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-028.md"
+    },
+    {
+      "halt_type": "hard_rule_trace_missing",
+      "detail": "unit U-029 has 2 Hard Rule(s) without traceable source (advisory; rules should cite binding/KB/starterkit/constitution)",
+      "unit_id": "U-029",
+      "untraced_rules": [
+        "- DO NOT import from apps/booking or packages/db in packages/edifact",
+        "- file packages/edifact/src/messages/iftmbf.ts MUST exist after bolt"
+      ],
+      "severity": "advisory",
+      "file": ".mega-sdd/vaults/carrier-booking-gateway/units/U-029.md"
+    }
+  ],
+  "next_action": "28 unit-spec issue(s) detected. Detection-only at hook layer; re-emit unit via generate-units --regenerate or amend manually."
+}

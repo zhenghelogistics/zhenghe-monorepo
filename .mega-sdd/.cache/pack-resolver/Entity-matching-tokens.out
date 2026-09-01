@@ -1,0 +1,13 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice A (token tuning).
+
+Universal principle: **entity matching reduces both a flow title and a unit to a SET
+of significant tokens and intersects them.** Generic structural words (articles,
+prepositions) and mega-sdd vault-FORMAT vocabulary (`module`, `flow`, `approve`,
+`maker`, …) are universal noise and are stripped by the validator core itself.
+
+DOMAIN-specific jargon (industry terms that are noise for entity matching in a given
+project) and compound-entity aliases are NOT universal — they belong in the framework
+pack (or a project fork's pack) via `stop_tokens:` / `compound_aliases:` (see
+`_template.md` §Entity matching tokens). The validator never bakes in a domain term.

@@ -1,0 +1,10 @@
+{
+  "status": "SKIP",
+  "validator": "flow-coverage",
+  "ts": "2026-09-01T07:02:36.151306Z",
+  "reason": "'## Flow-artifact derivation' present but no parseable endpoint_kinds (with flow_signal + path_glob)",
+  "missing_artifacts": [],
+  "dead_scaffold": [],
+  "summary": "SKIP \u2014 '## Flow-artifact derivation' present but no parseable endpoint_kinds (with flow_signal + path_glob)",
+  "next_action": "No action \u2014 this check does not apply to the current project/pack."
+}

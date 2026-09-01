@@ -1,0 +1,16 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice A (module matching).
+
+Universal principle: **to compare a flow against the unit that builds its module,
+the validator must recover each unit's entity name.** The strongest evidence is the
+unit's own `module:`/`title:` frontmatter; the next-strongest is the entity baked
+into the paths it ships (a `WidgetController`, a `widgets/` view dir, a `Widget`
+model). WHERE that entity lives in a path is framework-specific — Laravel buries it
+in `app/Http/Controllers/{Entity}Controller.php`; Django in an app/`models.py` class;
+Express in a `routes/{entity}.js`. This universal pack declares ONLY the principle.
+
+The concrete `entity_sources:` capture patterns live in the framework pack (see
+`_template.md` §Entity source globs). When NO pack in the chain declares them, the
+validator degrades to TITLE-ONLY matching (flow title tokens vs unit frontmatter
+tokens) — coarser, but never an error and never a crash on an undeclared stack.

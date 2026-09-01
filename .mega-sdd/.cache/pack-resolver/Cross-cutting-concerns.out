@@ -1,0 +1,22 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice B (`validate-sibling-consistency.sh`)
+> + slice C (`validate-sibling-consistency.sh --cross-cutting`). The PRINCIPLE is stack-neutral;
+> the SIGNATURES are not.
+
+Universal principle (holds across all backends): **when a concern cuts across a set of
+structurally-analogous sibling units (models that share a column or a role — e.g. every
+model carrying a tenant/branch key, every soft-deletable model), that concern must be
+implemented the SAME way in every sibling — one consistent mechanism per shared concern.**
+A sibling group where the golden exemplar declares the concern's obligation but a peer
+declares it differently (or not at all) has DIVERGED at decomposition time — a class of
+bug where the exemplar module is built correctly and the siblings quietly drift.
+
+How the validator groups siblings is universal: partition units by their `module` + `scope`
+frontmatter (when those fields exist); when they don't (a vault that never set them), the
+whole vault is one group and the pack concern's obligation is absolute. The CONCERN
+DEFINITIONS themselves — which column brings the concern into scope (`applies_when`), which
+signature the unit must declare (`spec_obligation`) — are stack-specific and live in the
+framework pack (`cross_cutting_concerns:`, see `_template.md`). When NO pack in the chain
+declares any concern, the validator writes `status: SKIP` — a stack is never blocked for a
+concern it never declared.

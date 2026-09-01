@@ -1,0 +1,7 @@
+{
+  "status": "SKIP",
+  "reason": "no factory-ledger.json",
+  "halt_type": null,
+  "convergence_status": null,
+  "cap": null
+}

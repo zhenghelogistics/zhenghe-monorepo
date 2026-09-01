@@ -1,0 +1,12 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice A (anti dead-stub).
+
+Universal principle: **a scaffolding generator emits some artifacts that are only
+valid when a corresponding flow endpoint exists** (e.g. an edit/update view is dead
+weight if the entity has no update flow). A unit that lists such an artifact in its
+target files without the gating flow endpoint is shipping a dead stub.
+
+As above, the universal pack declares only the principle; the concrete
+`artifact_glob` + `requires_flow_endpoint` signatures are framework-specific and
+live in the framework pack. Absent → the validator skips the dead-stub check.

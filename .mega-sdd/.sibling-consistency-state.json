@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "validator": "sibling-consistency",
+  "ts": "2026-09-01T07:02:36.238553Z",
+  "summary": {
+    "units_checked": 29,
+    "sibling_groups": 6,
+    "concerns_loaded": 0,
+    "inconsistent_count": 0,
+    "missing_relations_count": 0
+  },
+  "inconsistent": [],
+  "missing_relations": [],
+  "next_action": "No action \u2014 sibling concerns are consistent and FK relations are declared."
+}

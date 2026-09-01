@@ -1,0 +1,18 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice A (`validate-flow-coverage.sh`).
+> The PRINCIPLE is stack-neutral; the SIGNATURES are not.
+
+Universal principle (holds across all backends): **every input-accepting
+state-transition step in a flow must map to exactly one input-validation artifact
+in the unit that builds that module — no more, no fewer.** A module unit that
+enumerates N input-accepting flow steps but ships fewer validation artifacts has
+under-decomposed the flow (a step accepts input with no place to validate it).
+
+This pack declares ONLY the principle — it does NOT name a concrete artifact kind
+or path, because "where input validation lives" is framework-specific (Laravel:
+Form Request under `app/Http/Requests/`; Django: a `Form`/serializer; Express: a
+validation-schema middleware). A framework pack overrides this section with its own
+`endpoint_kinds:` block (see `_template.md` §Flow-artifact derivation). When NO pack
+in the chain declares concrete `endpoint_kinds:`, the validator writes `status: SKIP`
+— a stack is never blocked for a signature it never declared.

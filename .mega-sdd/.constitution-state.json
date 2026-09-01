@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "constitutions_found": 1,
+  "checks": [
+    {
+      "check": "carrier-booking-gateway/constitution_readable",
+      "status": "PASS"
+    },
+    {
+      "check": "carrier-booking-gateway/constitution_hash",
+      "status": "PASS",
+      "detail": "sha256=1df6544419cbb893..."
+    },
+    {
+      "check": "carrier-booking-gateway/clauses_found",
+      "status": "PASS",
+      "detail": "31 clause IDs"
+    },
+    {
+      "check": "carrier-booking-gateway/clause_source_cited",
+      "status": "PASS",
+      "detail": "all 31 clauses cite a source"
+    },
+    {
+      "check": "carrier-booking-gateway/clause_unit_coverage",
+      "status": "SKIP",
+      "detail": "no units directory (bound vault may not exist yet)"
+    },
+    {
+      "check": "carrier-booking-gateway/constitution_in_binding",
+      "status": "SKIP",
+      "detail": "no binding.md found"
+    }
+  ],
+  "issues": []
+}

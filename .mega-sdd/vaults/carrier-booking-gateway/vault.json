@@ -1,0 +1,409 @@
+{
+  "vault_version": "1.0",
+  "vault_layout": 2,
+  "generated_at": "2026-09-01T07:03:51.494619Z",
+  "title": "Carrier Booking Gateway",
+  "project_shape": "web-app",
+  "implementation_mode": "new",
+  "prd_status": "final",
+  "output_mode": "compact",
+  "mode_migrate_after": "first commit on main",
+  "constitution_version": "1.0",
+  "constitution_hash": "1df6544419cbb89308ef95489cdcbb694baf5fecfb4e975ad654d9e7d4c0fa55",
+  "source_documents": [
+    {
+      "type": "PRD",
+      "path": "docs/superpowers/specs/2026-09-01-carrier-booking-gateway-design.md",
+      "version": "1.0",
+      "date": "2026-09"
+    }
+  ],
+  "design_system_flags": {
+    "HAS_UI_COMPONENTS": false,
+    "HAS_TOKENS": false,
+    "HAS_A11Y": false,
+    "HAS_VOICE_BRAND": false
+  },
+  "entities": [
+    {
+      "name": "carriers",
+      "purpose": "registry of supported carriers and their capabilities; the gateway will not route to a disabled carrier",
+      "doc": "model.md",
+      "fields_count": 7
+    },
+    {
+      "name": "carrier_credentials",
+      "purpose": "encrypted per-carrier credentials; one active row per carrier in v1, account_ref present for future multi-account",
+      "doc": "model.md",
+      "fields_count": 12
+    },
+    {
+      "name": "bookings",
+      "purpose": "canonical booking record; ZHL source of truth for internal state, carrier is system-of-record for confirmation",
+      "doc": "model.md",
+      "fields_count": 18
+    },
+    {
+      "name": "booking_events",
+      "purpose": "append-only audit timeline for a booking; every status change and error is one row",
+      "doc": "model.md",
+      "fields_count": 10
+    },
+    {
+      "name": "shipment_events",
+      "purpose": "normalized tracking events (shipment / transport / equipment), upserted by dedupe_key",
+      "doc": "model.md",
+      "fields_count": 18
+    },
+    {
+      "name": "carrier_messages",
+      "purpose": "raw request/response log for every carrier exchange; audit + debugging when sandboxes go live",
+      "doc": "model.md",
+      "fields_count": 12
+    },
+    {
+      "name": "credential_events",
+      "purpose": "audit of credential set/rotate/disable actions",
+      "doc": "model.md",
+      "fields_count": 5
+    }
+  ],
+  "flows": [
+    {
+      "id": "F-U-001",
+      "title": "Create a booking",
+      "type": "user",
+      "doc": "flows.md",
+      "dod_count": 5
+    },
+    {
+      "id": "F-U-002",
+      "title": "Cancel a booking",
+      "type": "user",
+      "doc": "flows.md",
+      "dod_count": 3
+    },
+    {
+      "id": "F-U-003",
+      "title": "Set or rotate a carrier credential",
+      "type": "user",
+      "doc": "flows.md",
+      "dod_count": 5
+    },
+    {
+      "id": "F-S-001",
+      "title": "submit_booking worker job",
+      "type": "system",
+      "doc": "flows.md",
+      "dod_count": 5
+    },
+    {
+      "id": "F-S-002",
+      "title": "poll_booking_status (cron + worker)",
+      "type": "system",
+      "doc": "flows.md",
+      "dod_count": 5
+    },
+    {
+      "id": "F-S-003",
+      "title": "poll_tracking (cron + worker)",
+      "type": "system",
+      "doc": "flows.md",
+      "dod_count": 3
+    },
+    {
+      "id": "F-S-004",
+      "title": "submit_cancellation worker job",
+      "type": "system",
+      "doc": "flows.md",
+      "dod_count": 3
+    },
+    {
+      "id": "F-C-001",
+      "title": "End-to-end booking lifecycle",
+      "type": "cross-cutting",
+      "doc": "flows.md",
+      "dod_count": 5
+    }
+  ],
+  "adrs": [
+    {
+      "id": "D-001",
+      "title": "Standalone monorepo, not a module inside Motus",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-002",
+      "title": "Modular-monolith gateway (Approach 1)",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-003",
+      "title": "Canonical booking model based on DCSA Booking 2.0",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-004",
+      "title": "Transport-agnostic CarrierAdapter interface",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-005",
+      "title": "ZHL Postgres is source of truth; carrier is system-of-record for confirmation",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-006",
+      "title": "Polling for status updates in v1; webhook seam retained",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-007",
+      "title": "Encrypted Postgres credential store, master key from env",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-008",
+      "title": "Postgres-backed job queue (graphile-worker)",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-009",
+      "title": "Single status-reconcile choke point",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-010",
+      "title": "Build against per-carrier mock servers until sandbox credentials arrive",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-011",
+      "title": "v1 scope is create + status + cancel + tracking",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-012",
+      "title": "One active ZHL account per carrier; schema account-ready",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-013",
+      "title": "TypeScript + React 19 + Fastify + pnpm workspaces, no ORM",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-014",
+      "title": "`packages/edifact` is a seam plus skeleton in v1",
+      "doc": "vault.md",
+      "status": "accepted"
+    },
+    {
+      "id": "D-015",
+      "title": "Static egress IP for Evergreen IP allowlist",
+      "doc": "vault.md",
+      "status": "accepted"
+    }
+  ],
+  "open_questions": [
+    {
+      "tag": "OQ-CN-1",
+      "priority": "P1",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "Carrier credential applications are pending for all four carriers — no end-to-end test against a real carrier is possible until at least one sandbox is granted. Which carrier is expected first, and by when?",
+      "resolver_owner": "management / carrier onboarding"
+    },
+    {
+      "tag": "OQ-CN-2",
+      "priority": "P1",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "HMM onboarding appears to require a Korean business registration number and a partly Korean-language portal. Can ZHL satisfy this directly, or is a local partner / agent required?",
+      "resolver_owner": "management"
+    },
+    {
+      "tag": "OQ-CN-3",
+      "priority": "P1",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "Legal review of each carrier's API terms and conditions has not been done. Who owns it and what is the timeline before go-live?",
+      "resolver_owner": "legal"
+    },
+    {
+      "tag": "OQ-AR-1",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "medium",
+      "origin": "vault.md#Architecture",
+      "text": "Backend HTTP framework — the spec recommends Fastify but offers Express \"to match Motus\". Confirm the pick before the monorepo skeleton (chunk 1).",
+      "resolver_owner": "eng lead"
+    },
+    {
+      "tag": "OQ-AR-2",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "medium",
+      "origin": "vault.md#Architecture",
+      "text": "Job queue — `graphile-worker` (recommended) vs a hand-rolled `jobs` table with `FOR UPDATE SKIP LOCKED`. Confirm before chunk 2.",
+      "resolver_owner": "eng lead"
+    },
+    {
+      "tag": "OQ-AR-3",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "low",
+      "origin": "vault.md#Architecture",
+      "text": "Node.js and pnpm versions are not pinned.",
+      "resolver_owner": "decide at the monorepo skeleton (chunk 1)"
+    },
+    {
+      "tag": "OQ-AR-4",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "low",
+      "origin": "vault.md#Architecture",
+      "text": "The libsodium Node binding for `crypto_secretbox` (`sodium-native` vs `libsodium-wrappers`) is not specified.",
+      "resolver_owner": "eng at `carrier-core` / credential store (chunk 3–4)"
+    },
+    {
+      "tag": "OQ-AR-5",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "low",
+      "origin": "vault.md#Architecture",
+      "text": "Internal-user auth implementation (password hashing, session store, JWT library) is described only as \"local users mirroring the Greenlit plan\".",
+      "resolver_owner": "eng, against the referenced Greenlit auth plan (chunk 5)"
+    },
+    {
+      "tag": "OQ-DM-1",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "origin": "model.md#Constraints",
+      "text": "The `Idempotency-Key` uniqueness window has no expiry — keys are unique per `created_by` indefinitely. Is a TTL or retention window wanted?",
+      "resolver_owner": "eng / product"
+    },
+    {
+      "tag": "OQ-DM-2",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "origin": "model.md#Entities",
+      "text": "HMM and Evergreen use proprietary (non-DCSA) booking payloads; the exact request/response shapes are unknown until their sandboxes are available.",
+      "resolver_owner": "deferred to sandbox onboarding (ties to OQ-CN-1)"
+    },
+    {
+      "tag": "OQ-CN-4",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "Who in operations owns bookings parked in `SUBMISSION_FAILED` / `CANCELLATION_FAILED`, and what is the response-time expectation?",
+      "resolver_owner": "ops management"
+    },
+    {
+      "tag": "OQ-CN-5",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "Build-direct vs aggregator for some carriers — the spec builds direct adapters; confirm no aggregator is planned for v1.",
+      "resolver_owner": "management"
+    },
+    {
+      "tag": "OQ-CN-6",
+      "priority": "P2",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "Poll interval values (`POLL_INTERVAL_BOOKING_MIN`, `POLL_INTERVAL_TRACKING_MIN`) are not specified.",
+      "resolver_owner": "ops + eng tuning"
+    },
+    {
+      "tag": "OQ-AR-6",
+      "priority": "P3",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "tech",
+      "resolution_mode": "blocking",
+      "classification_confidence": "low",
+      "origin": "vault.md#Architecture",
+      "text": "CI ephemeral-Postgres provisioning mechanism (service container, Docker, Testcontainers, etc.) is not specified.",
+      "resolver_owner": "eng at CI setup (chunk 1)"
+    },
+    {
+      "tag": "OQ-CN-7",
+      "priority": "P3",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "text": "`HTTP_TIMEOUT_MS`, `CIRCUIT_FAIL_THRESHOLD`, and the `submit_booking` retry max-attempts N are not specified.",
+      "resolver_owner": "eng tuning"
+    },
+    {
+      "tag": "OQ-FL-1",
+      "priority": "P3",
+      "doc": "constraints.md",
+      "status": "open",
+      "category": "business",
+      "origin": "flows.md#F-S-003",
+      "text": "Tracking polling has no stop condition — `CONFIRMED` bookings are polled until an operator archives them; a delivered-state stop is explicitly deferred to a later phase. Confirm this is acceptable for v1.",
+      "resolver_owner": "product"
+    }
+  ],
+  "open_questions_summary": {
+    "total": 16,
+    "by_priority": {
+      "P1": 3,
+      "P2": 10,
+      "P3": 3
+    },
+    "by_status": {
+      "open": 16,
+      "resolved": 0,
+      "deferred": 0,
+      "out_of_scope": 0
+    }
+  },
+  "changelog": [
+    {
+      "event": "units_generated",
+      "at": "2026-09-01T07:05:00Z",
+      "count": 29
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice D (`validate-unit-spec.sh` —
+> render-test-per-module gate). The PRINCIPLE is stack-neutral; the SIGNATURES are not.
+
+Universal principle (holds across all UI-bearing stacks): **a unit that ships a detail
+view must prove that view actually renders.** A route-200 smoke test is not enough — the
+recurring real-world crash is the detail page that returns 200 with a blank body or
+throws on a null/empty field (an empty-model `show`, a `—` branch label, a null
+timestamp formatted without a guard). The cheap durable proof is a render test that
+builds a model, GETs the detail route, and asserts a REAL display field appears. Every
+view-bearing unit therefore carries one `acceptance_test` of `type: render`.
+
+This pack declares ONLY the principle — it does NOT name a concrete view path or test
+template, because WHERE a detail view lives and HOW you render+assert it is
+framework-specific (Laravel: a Blade `show.blade.php` GET-tested with
+`$this->get(route(...))->assertSee(...)`; Django: a `DetailView` template tested with
+`self.client.get(...)`; Express+React: a component render test). A framework pack
+overrides this section with concrete `detail_view_glob:` + `detail_view_render:` (see
+`_template.md` §Test patterns). When NO pack in the chain declares them, the render check
+SKIPs — a stack is never blocked for a detail-view convention it never declared.

@@ -1,0 +1,28 @@
+# packres-v2 rc=0 sk=0 cm=0 st=0 chain=_universal.md
+# --- from _universal.md ---
+> Universal reasoning core for code-delivery slice B (relation coherence).
+
+Universal principle: **a foreign-key column implies a relation accessor — a model that
+declares an FK column should declare the relation that reads it back.** The naming is
+near-universal across ORMs: an FK column named `<thing>_id` maps to an accessor named for
+`<thing>` (the singular target), and the canonical kind is the inverse "belongs-to".
+
+```yaml
+relation_derivation:
+  fk_to_accessor:
+    rule: '{singular}_id => belongs-to accessor `{singular}`'
+    accessor_form: any   # 'any' = match the accessor as a word (attribute OR call). A
+                         # framework pack overrides with its idiom: 'call' for paren-call
+                         # ORMs (Laravel belongsTo `branch()`, ActiveRecord); 'attribute'
+                         # for attribute-relation ORMs (Django `branch = ForeignKey(...)`).
+                         # NEVER hardcode the shape in the validator — a stack the pack does
+                         # not specialize is matched permissively, never false-FAILed (TAE2E-01).
+    # The relation check is a CROSS-SIBLING divergence test (not an absolute per-unit rule):
+    # within a sibling group it flags a unit lacking the accessor for an FK ONLY when a
+    # sibling declares it. Uniform groups (all declare, or all rely on ORM convention) and
+    # solo units are never flagged (FPP-4). A pack may override accessor casing/kind/form.
+```
+
+A framework pack MAY override `fk_to_accessor` (casing, accessor kind) in its own
+`relation_derivation:` block. When neither a pack nor this universal default is parseable,
+the relation check is skipped — never an error.

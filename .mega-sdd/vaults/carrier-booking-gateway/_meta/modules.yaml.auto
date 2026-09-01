@@ -1,0 +1,94 @@
+mega_sdd_schema: 1
+# Auto-derived by generate-units from vault.md ## Architecture layers + the
+# Section-17 build decomposition of the source spec. Rename to modules.yaml to lock in.
+modules:
+  - id: M-foundation
+    name: "Monorepo foundation & shared packages"
+    description: "pnpm workspace skeleton, apps/booking scaffold, packages/db + schema, packages/auth."
+    vault_sections:
+      - vault.md#Architecture
+      - model.md#Entities
+      - vault.md#Decisions
+    dod:
+      - "pnpm install + build + typecheck green on the empty scaffold"
+      - "All 7 tables migrate up/down cleanly; carriers table seeded"
+      - "GET /health returns 200 with db + worker heartbeat fields"
+    estimated_units: "5"
+    priority: P0
+    blocks: [M-carrier-core, M-gateway-domain, M-api, M-adapters, M-frontend]
+    blocked_by: []
+
+  - id: M-carrier-core
+    name: "packages/carrier-core"
+    description: "Canonical types + zod, CarrierAdapter interface, HttpClient (auth/retry/breaker/logging), ContractTestKit, packages/edifact translator seam."
+    vault_sections:
+      - vault.md#Architecture
+    dod:
+      - "HttpClient unit tests pass (retry, circuit breaker, OAuth2 token cache)"
+      - "A FakeAdapter passes ContractTestKit"
+      - "packages/edifact round-trips a canonical booking through IFTMBF"
+    estimated_units: "6"
+    priority: P0
+    blocks: [M-gateway-domain, M-adapters]
+    blocked_by: [M-foundation]
+
+  - id: M-gateway-domain
+    name: "Domain services & async worker"
+    description: "CredentialStore, statusReconciler (single writer), bookingService, worker tasks + cron enqueuers, lifecycle test."
+    vault_sections:
+      - flows.md#F-S-001
+      - flows.md#F-S-002
+      - flows.md#F-S-003
+      - flows.md#F-S-004
+      - vault.md#Architecture
+    dod:
+      - "Full lifecycle test (create -> poll -> confirm -> cancel) passes against a real Postgres using FakeAdapter"
+      - "statusReconciler is the only writer of bookings.status / booking_events"
+    estimated_units: "5"
+    priority: P0
+    blocks: [M-api, M-adapters]
+    blocked_by: [M-foundation, M-carrier-core]
+
+  - id: M-api
+    name: "Internal API"
+    description: "All /bookings, /tracking, /carriers, /health routes with zod validation, RBAC, idempotency; API integration tests."
+    vault_sections:
+      - vault.md#Architecture
+      - flows.md#F-U-001
+      - flows.md#F-U-002
+      - flows.md#F-U-003
+    dod:
+      - "API integration tests cover roles, idempotency, validation errors, /health"
+    estimated_units: "3"
+    priority: P1
+    blocks: [M-adapters, M-frontend]
+    blocked_by: [M-gateway-domain, M-foundation]
+
+  - id: M-adapters
+    name: "Carrier adapters & mock servers"
+    description: "apps/mock-carriers, then ONE / Maersk / HMM / Evergreen adapters, each passing ContractTestKit against its mock; adapter registry + end-to-end mock test."
+    vault_sections:
+      - vault.md#Architecture
+      - flows.md#F-C-001
+    dod:
+      - "Each adapter is green against its mock via ContractTestKit"
+      - "End-to-end via the API with mock base URLs: a booking reaches CONFIRMED without any carrier portal login"
+    estimated_units: "6"
+    priority: P1
+    blocks: [M-frontend]
+    blocked_by: [M-foundation, M-carrier-core, M-api]
+
+  - id: M-frontend
+    name: "Thin operator UI"
+    description: "Vite + React 19 shell + auth guard, Bookings list, New booking, Booking detail, Carriers/settings admin."
+    vault_sections:
+      - vault.md#Architecture
+      - flows.md#F-U-001
+      - flows.md#F-U-002
+      - flows.md#F-U-003
+    dod:
+      - "Manual run of create / cancel / track against the mock carriers works end to end"
+    estimated_units: "4"
+    priority: P2
+    blocks: []
+    blocked_by: [M-foundation, M-api]
